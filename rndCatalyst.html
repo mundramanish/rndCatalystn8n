@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&D Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+
+        .tab-button {
+            padding: 15px;
+            margin: 0 5px;
+            background-color: #555;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 150px;
+            text-align: center;
+        }
+
+        .tab-button.active {
+            background-color: #28a745;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            margin-top: 20px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        label {
+            margin-top: 10px;
+            display: block;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            border-radius: 50%;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+        }
+
+        input:checked+.slider {
+            background-color: #28a745;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(26px);
+        }
+
+        .submit-button {
+            padding: 15px 30px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Container for adding left and right padding */
+        .form-container {
+            padding: 0 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align: center; padding: 20px;">R&D Management System</h1>
+    <div class="tabs">
+        <button class="tab-button active" onclick="showTab('addRnD')">Add R&D</button>
+        <button class="tab-button" onclick="showTab('findRnD')">Find R&D</button>
+    </div>
+
+    <!-- Add R&D Tab Content -->
+    <div id="addRnD" class="tab-content active">
+        <h2>Add R&D Details</h2>
+        <div class="form-container">
+            <form id="addRnDForm">
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" required>
+
+                <label for="employeeName">Employee Name</label>
+                <input type="text" id="employeeName" name="employeeName" required>
+
+                <label for="department">Department</label>
+                <select id="department" name="department" required>
+                    <option value="IT">IT</option>
+                    <option value="HR">HR</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Marketing">Marketing</option>
+                </select>
+
+                <label for="jobTitle">Job Title</label>
+                <input type="text" id="jobTitle" name="jobTitle" required>
+
+                <label for="techManager">Tech Manager</label>
+                <select id="techManager" name="techManager" required>
+                    <option value="Manager1">Manager 1</option>
+                    <option value="Manager2">Manager 2</option>
+                    <option value="Manager3">Manager 3</option>
+                </select>
+
+                <label for="rndTopic">R&D Topic</label>
+                <input type="text" id="rndTopic" name="rndTopic" required>
+
+                <label for="longDescription">Long Description</label>
+                <textarea id="longDescription" name="longDescription" required></textarea>
+
+                <label for="demoUrl">Demo URL</label>
+                <input type="text" id="demoUrl" name="demoUrl">
+
+                <label for="erpId">ERP ID</label>
+                <input type="text" id="erpId" name="erpId">
+
+                <label for="appName">App Name</label>
+                <input type="text" id="appName" name="appName">
+
+                <label for="appDescription">App Description</label>
+                <textarea id="appDescription" name="appDescription"></textarea>
+
+                <label for="appleAppUrl">Apple Live App URL</label>
+                <input type="text" id="appleAppUrl" name="appleAppUrl">
+
+                <label for="androidAppUrl">Android Live App URL</label>
+                <input type="text" id="androidAppUrl" name="androidAppUrl">
+
+                <label for="invisionUrl">InVision URL</label>
+                <input type="text" id="invisionUrl" name="invisionUrl">
+
+                <label for="domain">Domain</label>
+                <input type="text" id="domain" name="domain">
+
+                <label for="sourceCode">Source Code Details</label>
+                <textarea id="sourceCode" name="sourceCode"></textarea>
+
+                <label for="mainGoal">Main Goal of App</label>
+                <textarea id="mainGoal" name="mainGoal"></textarea>
+
+                <label for="tags">Tags</label>
+                <input type="text" id="tags" name="tags">
+
+                <label for="nda">NDA</label>
+                <label class="switch">
+                    <input type="checkbox" id="nda" name="nda">
+                    <span class="slider"></span>
+                </label>
+
+                <label for="rndSuccessRate">R&D Success Rate</label>
+                <select id="rndSuccessRate" name="rndSuccessRate" required>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+
+                <label for="complexity">Complexity</label>
+                <select id="complexity" name="complexity" required>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+
+                <label for="clientName">Client Name</label>
+                <input type="text" id="clientName" name="clientName">
+
+                <button type="button" class="submit-button" onclick="addRnD()">Add R&D</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Find R&D Tab Content -->
+    <div id="findRnD" class="tab-content">
+        <h2>Find R&D</h2>
+        <div class="form-container">
+            <form id="findRnDForm">
+                <label for="description">Description</label>
+                <textarea id="description" name="description"></textarea>
+                <button type="button" class="submit-button" onclick="searchRnD()">Search R&D</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-button');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            buttons.forEach(button => button.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            document.querySelector(`button[onclick="showTab('${tabName}')"]`).classList.add('active');
+        }
+
+        async function addRnD() {
+            const form = document.getElementById('addRnDForm');
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+
+            const apiUrl = 'https://workflow.indianic.org/webhook-test/314d2b7b-bea5-4702-8089-10a2b7c41bb8';
+
+            // Define the parameters to be sent in the request
+            const requestData = {
+                "key_name": "add",
+                "data": data,
+            };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestData)  // Convert the request data to JSON
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    // Handle the response data if needed
+                    console.log('API Response:', data);
+                } else {
+                    alert('Error: ' + response.statusText);
+                }
+            } catch (error) {
+                alert('API call failed: ' + error.message);
+            }
+        }
+
+
+        async function searchRnD() {
+            const description = document.getElementById('description').value;
+
+            const apiUrl = 'https://workflow.indianic.org/webhook/314d2b7b-bea5-4702-8089-10a2b7c41bb9';
+
+            // Define the parameters to be sent in the request
+            const requestData = {
+                "key_name": "find",
+                "description": description,
+            };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestData)  // Convert the request data to JSON
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    // Handle the response data if needed
+                    console.log('API Response:', data);
+                } else {
+                    alert('Error: ' + response.statusText);
+                }
+            } catch (error) {
+                alert('API call failed: ' + error.message);
+            }
+        }
+
+    </script>
+</body>
+
+</html>
